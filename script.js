@@ -1,4 +1,3 @@
-const body = document.getElementsByTagName('body')[0];
 const main = document.getElementsByTagName('main')[0];
 
 //2 e 3.
@@ -18,6 +17,13 @@ function criaCores(lista){
 let cores = ['black','red','blue','green'];
 
 criaCores(cores);
+
+//9.
+let resetBtn = document.createElement('button');
+resetBtn.id = 'clear-board';
+resetBtn.innerText = 'Limpar';
+resetBtn.addEventListener('click', resetColors);
+main.appendChild(resetBtn);
 
 //4 e 5.
 const canvas = document.createElement('div');
@@ -65,11 +71,6 @@ function alteraCorPx(event){
   event.target.style.backgroundColor = document.getElementsByClassName('selected')[0].style.backgroundColor;
 }
 
-//9.
-let resetBtn = document.createElement('button');
-resetBtn.innerText = 'Reset Colors';
-resetBtn.addEventListener('click', resetColors);
-body.appendChild(resetBtn);
 
 function resetColors(){
   for(i=0; i<canvasPixels.length; i+=1){
