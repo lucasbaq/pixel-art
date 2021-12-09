@@ -6,23 +6,21 @@ colorPalette.id = 'color-palette';
 main.appendChild(colorPalette);
 
 function criaCores(lista){
-  const colorLine = document.createElement('div');
-  colorPalette.appendChild(colorLine);
-  for(let i=0; i < lista.length; i+=1){
+  for(i=0; i < lista.length; i+=1){
     const colors = document.createElement('div');
     colors.className = 'color';
     colors.style.backgroundColor = lista[i];
-    colorLine.appendChild(colors);
+    colorPalette.appendChild(colors);
   }
 }
 
-let cores = ['black','red','blue','green','yellow'];
+let cores = ['black','red','blue','green'];
 
 criaCores(cores);
 
-//4.
+//4 e 5.
 const canvas = document.createElement('div');
-canvas.id = 'pixelboard';
+canvas.id = 'pixel-board';
 main.appendChild(canvas);
 
 function criaPixel(){
@@ -40,4 +38,19 @@ function criaPixel(){
 
 criaPixel();
 
+//6.
+const colorBlack = document.getElementsByClassName('color')[0];
+colorBlack.classList.add('selected');
 
+//7.
+const allColors = document.getElementsByClassName('color');
+for (let i=0; i < allColors.length; i+=1){
+  allColors[i].addEventListener('click', colorSelected);
+}
+
+function colorSelected(event){
+  const item = event.target;
+  let tempselected = document.getElementsByClassName('selected')[0];
+  tempselected.classList.remove('selected');
+  item.classList.add('selected');
+}
