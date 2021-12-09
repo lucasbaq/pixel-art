@@ -42,3 +42,9 @@ h1{
   border-width: 4px;
   border-color: lightgrey;
 }
+
+button {
+  height: 50px;
+  width: 80px;
+  margin: 20px 60px;
+}

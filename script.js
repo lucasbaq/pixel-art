@@ -1,3 +1,4 @@
+const body = document.getElementsByTagName('body')[0];
 const main = document.getElementsByTagName('main')[0];
 
 //2 e 3.
@@ -49,8 +50,29 @@ for (let i=0; i < allColors.length; i+=1){
 }
 
 function colorSelected(event){
-  const item = event.target;
   let tempselected = document.getElementsByClassName('selected')[0];
   tempselected.classList.remove('selected');
-  item.classList.add('selected');
+  event.target.classList.add('selected');
+}
+
+//8.
+const canvasPixels = document.getElementsByClassName('pixel');
+for(i=0; i< canvasPixels.length; i+=1){
+  canvasPixels[i].addEventListener('click', alteraCorPx);
+}
+
+function alteraCorPx(event){
+  event.target.style.backgroundColor = document.getElementsByClassName('selected')[0].style.backgroundColor;
+}
+
+//9.
+let resetBtn = document.createElement('button');
+resetBtn.innerText = 'Reset Colors';
+resetBtn.addEventListener('click', resetColors);
+body.appendChild(resetBtn);
+
+function resetColors(){
+  for(i=0; i<canvasPixels.length; i+=1){
+    canvasPixels[i].style.backgroundColor = 'white';
+  }
 }
