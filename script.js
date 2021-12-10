@@ -5,8 +5,8 @@ const colorPalette = document.createElement('div');
 colorPalette.id = 'color-palette';
 main.appendChild(colorPalette);
 
-function criaCores(lista){
-  for(i=0; i < lista.length; i+=1){
+function criaCores(lista) {
+  for(i = 0; i < lista.length; i += 1){
     const colors = document.createElement('div');
     colors.className = 'color';
     colors.style.backgroundColor = lista[i];
@@ -14,28 +14,27 @@ function criaCores(lista){
   }
 }
 
-let cores = ['black','red','blue','green'];
+const cores = ['black','red','blue','green'];
 
 criaCores(cores);
 
 //9.
-let resetBtn = document.createElement('button');
+const resetBtn = document.createElement('button');
 resetBtn.id = 'clear-board';
 resetBtn.innerText = 'Limpar';
 resetBtn.addEventListener('click', resetColors);
 main.appendChild(resetBtn);
 
 //4 e 5.
-const canvas = document.createElement('div');
-canvas.id = 'pixel-board';
-main.appendChild(canvas);
-
-function criaPixel(){
-  for (let x=0; x<5; x+=1){
+function criaPixel(num){
+  const canvas = document.createElement('div');
+  canvas.id = 'pixel-board';
+  main.appendChild(canvas);
+  for (let x = 0; x < num; x += 1) {
     const pixelLine = document.createElement('div');
     pixelLine.className = 'canvas-line';
     canvas.appendChild(pixelLine);
-    for (let j=0; j<5; j+=1){
+    for (let j = 0; j < num; j += 1) {
       const pixel = document.createElement('div');
       pixel.className = 'pixel';
       pixelLine.appendChild(pixel);
@@ -43,7 +42,7 @@ function criaPixel(){
   }
 }
 
-criaPixel();
+criaPixel(5);
 
 //6.
 const colorBlack = document.getElementsByClassName('color')[0];
@@ -51,29 +50,63 @@ colorBlack.classList.add('selected');
 
 //7.
 const allColors = document.getElementsByClassName('color');
-for (let i=0; i < allColors.length; i+=1){
+for (let i = 0; i < allColors.length; i += 1) {
   allColors[i].addEventListener('click', colorSelected);
 }
 
-function colorSelected(event){
-  let tempselected = document.getElementsByClassName('selected')[0];
+function colorSelected(event) {
+  const tempselected = document.getElementsByClassName('selected')[0];
   tempselected.classList.remove('selected');
   event.target.classList.add('selected');
 }
 
 //8.
 const canvasPixels = document.getElementsByClassName('pixel');
-for(i=0; i< canvasPixels.length; i+=1){
+for(i = 0; i < canvasPixels.length; i += 1) {
   canvasPixels[i].addEventListener('click', alteraCorPx);
 }
 
-function alteraCorPx(event){
+function alteraCorPx(event) {
   event.target.style.backgroundColor = document.getElementsByClassName('selected')[0].style.backgroundColor;
 }
 
 
 function resetColors(){
-  for(i=0; i<canvasPixels.length; i+=1){
+  for(i = 0; i < canvasPixels.length; i += 1){
     canvasPixels[i].style.backgroundColor = 'white';
   }
+}
+
+//10.
+const input = document.createElement('input');
+input.type = 'number';
+input.min = '1';
+input.placeholder = 'Qual a nova altura? (O quadro sempre será quadrado)';
+input.id = 'board-size';
+const quadro = document.getElementById('pixel-board');
+main.insertBefore(input, quadro);
+
+const attBtn = document.createElement('button');
+attBtn.id = 'generate-board';
+attBtn.innerText = 'VQV';
+attBtn.addEventListener('click', novoQuadro);
+main.insertBefore(attBtn, quadro);
+
+function novoQuadro() {
+  const num = document.getElementById('board-size').value;
+  if (num >=5 && num <= 50) {
+    apagaQuadro(num);
+  }else if (num < 5 && num != false) {
+    apagaQuadro(5);
+  }else if (num > 50) {
+    apagaQuadro(50);
+  }else {
+    alert('Board inválido!')
+  }
+}
+
+function apagaQuadro(num) {
+  const quadro = document.getElementById('pixel-board');
+  quadro.remove();
+  criaPixel(num);
 }
