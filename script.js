@@ -14,9 +14,22 @@ function criaCores(lista) {
   }
 }
 
-const cores = ['black','red','blue','green'];
+const listaCores = ['yellow', 'red', 'blue', 'green','antiquewhite', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'gold', 'greenyellow', 'indigo', 'lightsalmon', 'magenta', 'orchid', 'seagreen', 'slateblue', 'tomato', 'turquoise'];
+let cores = ['black']
 
-criaCores(cores);
+function escolheCores(lista, cores){
+  let temp = 0;
+  for (let index = 0; index < 3; index += 1){
+    let aleatorio = Math.floor(Math.random() * 20);
+    if(aleatorio == temp){
+      aleatorio = Math.floor(Math.random() * 20);
+    }
+    cores.push(listaCores[aleatorio]);
+    temp = aleatorio;
+  }
+  criaCores(cores);
+}
+escolheCores(listaCores, cores);
 
 //9.
 const resetBtn = document.createElement('button');
