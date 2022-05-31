@@ -31,15 +31,15 @@ function escolheCores(lista, cores){
 }
 escolheCores(listaCores, cores);
 
-//9.
+// 9.
 const resetBtn = document.createElement('button');
 resetBtn.id = 'clear-board';
 resetBtn.innerText = 'Limpar';
 resetBtn.addEventListener('click', resetColors);
 main.appendChild(resetBtn);
 
-//4 e 5.
-function criaPixel(num){
+// 4 e 5.
+function criaPixel(num) {
   const canvas = document.createElement('div');
   canvas.id = 'pixel-board';
   main.appendChild(canvas);
@@ -57,7 +57,7 @@ function criaPixel(num){
 
 criaPixel(5);
 
-//6.
+// 6.
 const colorBlack = document.getElementsByClassName('color')[0];
 colorBlack.classList.add('selected');
 
@@ -83,9 +83,8 @@ function alteraCorPx(event) {
   event.target.style.backgroundColor = document.getElementsByClassName('selected')[0].style.backgroundColor;
 }
 
-
-function resetColors(){
-  for(i = 0; i < canvasPixels.length; i += 1){
+function resetColors() {
+  for (i = 0; i < canvasPixels.length; i += 1){
     canvasPixels[i].style.backgroundColor = 'white';
   }
 }
